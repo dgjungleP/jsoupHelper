@@ -1,5 +1,6 @@
 package script.jsoup.fangtianxia;
 
+import com.alibaba.fastjson.JSON;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -60,9 +61,9 @@ public class AppMain {
                         if (element.text().startsWith("小区规划")) {
                             Elements li = element.getElementsByTag("li").select("div.list-right");
                             entity.getInfo().setBaseInfo(BaseInfo.builder()
-                                    .greeningRate(li.get(4).text())
-                                    .plotRatio(li.get(3).text())
-                                    .totalNumber(li.get(7).text())
+                                    .greeningRate(li.get(3).text())
+                                    .plotRatio(li.get(2).text())
+                                    .totalNumber(li.get(6).text())
                                     .build());
                             break;
                         }
@@ -72,7 +73,7 @@ public class AppMain {
             }
 
         }
-        entityList.forEach(System.out::println);
+        entityList.stream().map(JSON::toJSONString).forEach(System.out::println);
     }
 }
 
