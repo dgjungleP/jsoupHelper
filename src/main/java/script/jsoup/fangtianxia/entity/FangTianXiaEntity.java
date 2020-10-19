@@ -1,9 +1,13 @@
 package script.jsoup.fangtianxia.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import net.sf.cglib.beans.BeanCopier;
 
 import java.net.URL;
+
 
 /**
  * @version: v1.0
@@ -12,10 +16,20 @@ import java.net.URL;
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class FangTianXiaEntity {
-    String id;
-    String houseName;
-    URL url;
-    EntityInfo info;
+	String id;
+	String houseName;
+	URL url;
+	EntityInfo entityInfo;
+
+	public FangTianXiaEntity copy() {
+		FangTianXiaEntity fangTianXiaEntity = new FangTianXiaEntity();
+		BeanCopier copier = BeanCopier.create(FangTianXiaEntity.class, FangTianXiaEntity.class, false);
+		copier.copy(this, fangTianXiaEntity, null);
+		return fangTianXiaEntity;
+	}
+
 }
