@@ -14,7 +14,7 @@ public class TaskConfig {
 	public TaskExecutor taskExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(10); //核心线程数
-		executor.setMaxPoolSize(20);  //最大线程数
+		executor.setMaxPoolSize(25);  //最大线程数
 		executor.setQueueCapacity(1000); //队列大小
 		executor.setKeepAliveSeconds(300); //线程最大空闲时间
 		executor.setThreadNamePrefix("search-Executor-"); //指定用于新创建的线程名称的前缀。

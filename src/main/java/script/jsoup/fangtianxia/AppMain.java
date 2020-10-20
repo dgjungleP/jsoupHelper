@@ -15,9 +15,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableConfigurationProperties
 public class AppMain {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AppMain.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AppMain.class, args);
+    }
 
 }
 
