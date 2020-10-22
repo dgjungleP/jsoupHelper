@@ -1,4 +1,10 @@
 server:
-  port: 88888
+  port: 8888
   tomcat:
     uri-encoding: UTF-8
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://47.92.150.34:3306/script?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: dgj
+      password: root

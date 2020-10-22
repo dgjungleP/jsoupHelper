@@ -20,16 +20,22 @@ import java.net.URL;
 @AllArgsConstructor
 @Builder
 public class FangTianXiaEntity {
-	String id;
-	String houseName;
-	URL url;
-	EntityInfo entityInfo;
+    Long id;
+    String houseName;
+    URL url;
+    EntityInfo entityInfo;
 
-	public FangTianXiaEntity copy() {
-		FangTianXiaEntity fangTianXiaEntity = new FangTianXiaEntity();
-		BeanCopier copier = BeanCopier.create(FangTianXiaEntity.class, FangTianXiaEntity.class, false);
-		copier.copy(this, fangTianXiaEntity, null);
-		return fangTianXiaEntity;
-	}
+    public FangTianXiaEntity copy() {
+        FangTianXiaEntity fangTianXiaEntity = new FangTianXiaEntity();
+        BeanCopier copier = BeanCopier.create(FangTianXiaEntity.class, FangTianXiaEntity.class, false);
+        copier.copy(this, fangTianXiaEntity, null);
+        return fangTianXiaEntity;
+    }
 
+    public FangTianXiaRepos createRepo() {
+        FangTianXiaRepos fangTianXiaRepos = new FangTianXiaRepos();
+        fangTianXiaRepos.houseName = this.houseName;
+        fangTianXiaRepos.url = this.url.getPath();
+        return fangTianXiaRepos;
+    }
 }

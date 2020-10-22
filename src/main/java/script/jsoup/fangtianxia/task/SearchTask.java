@@ -6,11 +6,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import script.jsoup.fangtianxia.entity.BaseInfo;
 import script.jsoup.fangtianxia.entity.EntityInfo;
 import script.jsoup.fangtianxia.entity.FangTianXiaEntity;
+import script.jsoup.fangtianxia.mapper.FangTianXiaMapper;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class SearchTask {
+    @Autowired
+    private FangTianXiaMapper fangTianXiaMapper;
     public static final String SUCCESS = "success";
     public static final String ERROR = "error";
 
@@ -166,6 +170,9 @@ public class SearchTask {
             successList.addAll(retryList);
             log.info("链接：" + page + "重试后成功获取数量：" + successList.size());
             log.info("链接：" + page + "重试后失败数量：" + errorList.size());
+        }
+        for (FangTianXiaEntity fangTianXiaEntity : successList) {
+            fangTianXiaMapper.insert(fangTianXiaEntity.createRepo());
         }
         System.out.println(JSONObject.toJSONString(resultMap));
     }
